@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 class="my-4">Lista de Futbolistas</h1>
+
+  <!-- Formulario de búsqueda por ID -->
+  <form (submit)="buscarPorId()" class="form-container">
+    <div class="form-group">
+      <label for="idBuscar">Buscar por ID:</label>
+      <input type="number" class="form-control" id="idBuscar" name="idBuscar" [(ngModel)]="idBusqueda" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-buscar">Buscar</button>
+    <button (click)="volver()" class="btn btn-primary btn-buscar">Volver</button>
+
+  </form>
+
+  <!-- Detalles del Futbolista encontrado por ID -->
+  <div *ngIf="futbolistaEncontrado">
+    <h2 class="my-4">Detalles del Futbolista</h2>
+    <div class="card">
+      <div class="card-body">
+        <p><strong>ID:</strong> {{ futbolistaEncontrado.id }}</p>
+        <p><strong>Nombres:</strong> {{ futbolistaEncontrado.nombres }}</p>
+        <p><strong>Apellidos:</strong> {{ futbolistaEncontrado.apellidos }}</p>
+        <p><strong>Fecha de Nacimiento:</strong> {{ futbolistaEncontrado.fecha }}</p>
+        <p><strong>Características:</strong> {{ futbolistaEncontrado.caracteristicas }}</p>
+        <p><strong>Posición:</strong> {{ futbolistaEncontrado.posicion }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de Futbolistas -->
+  <table class="table table-striped table-bordered mt-4" *ngIf="!futbolistaEncontrado">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Características</th>
+        <th>Posición</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let futbolista of futbolistas">
+        <td>{{ futbolista.id }}</td>
+        <td>{{ futbolista.nombres }}</td>
+        <td>{{ futbolista.apellidos }}</td>
+        <td>{{ futbolista.fecha }}</td>
+        <td>{{ futbolista.caracteristicas }}</td>
+        <td>{{ futbolista.posicion }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
